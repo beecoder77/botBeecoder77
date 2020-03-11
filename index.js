@@ -16,10 +16,11 @@ app.get('/', function (req, res) {
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
-    let body = req.body;
+    let data = req.body;
+    console.log(req.body);
   
     // Checks this is an event from a page subscription
-    if (body.object === 'page') {
+    if (data.object === 'page') {
   
       // Iterate over each entry - there may be multiple if batched
     data.entry.forEach(function(entry) {
@@ -43,6 +44,7 @@ app.post('/webhook', (req, res) => {
     } else {
       // Returns a '404 Not Found' if event is not from a page subscription
       res.sendStatus(404);
+      console.log("Required body")
     }
   
 });
